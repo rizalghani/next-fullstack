@@ -56,7 +56,7 @@ export const RegisterForm = () => {
       <div className="mb-6">
         <input
           required
-          type="name"
+          type="text"
           name="name"
           value={formValues.name}
           onChange={handleChange}
@@ -78,7 +78,7 @@ export const RegisterForm = () => {
       <div className="mb-6">
         <input
           required
-          type="name"
+          type="text"
           name="phone"
           value={formValues.phone}
           onChange={handleChange}

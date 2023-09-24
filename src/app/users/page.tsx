@@ -11,7 +11,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {user && (
         <AdminLayout>
           <UserForm />
