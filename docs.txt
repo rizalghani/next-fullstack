@@ -1,8 +1,0 @@
-dotenv -e .env.local knex migrate:make products
-
--- Create file migrations
-yarn knex migrate:make users
-
-yarn knex migrate:latest
-
-yarn knex migrate:up 20230915073626_roles.js
