@@ -37,7 +37,7 @@ export default async function UserForm() {
         </div>
         <div className="col">
           <div className="float-right">
-            <AddUser />
+            <AddUser type="post" />
           </div>
         </div>
       </div>
@@ -61,7 +61,12 @@ export default async function UserForm() {
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td>{user.status}</td>
-                <td></td>
+                <td>
+                  <div className="row">
+                    <AddUser type="get" data={user} />
+                    <AddUser type="put" data={user} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
