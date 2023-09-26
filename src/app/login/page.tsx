@@ -1,18 +1,11 @@
 import { LoginForm } from "./form";
-import Header from "@/components/header.component";
 
 export default function LoginPage() {
   return (
     <>
-      {/* <Header /> */}
-      <section className="min-h-screens">
-        <div className="container mx-auto px-6 py-12 h-full flex justify-center items-center">
-          {/* <div className="md:w-8/12 lg:w-5/12 bg-blue-500 px-10 py-10"></div> */}
-          <div className="md:w-8/12 lg:w-5/12 bg-white px-8 py-10">
-            <LoginForm />
-          </div>
-        </div>
-      </section>
+      <div className="container mx-auto px-6 py-12 h-full flex justify-center items-center">
+        <LoginForm />
+      </div>
     </>
   );
 }

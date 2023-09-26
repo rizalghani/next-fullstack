@@ -11,13 +11,11 @@ export default function AdminLayout(props: propsType) {
   const { children } = props;
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen">
       <Topbar />
       <div className="flex-1 flex flex-wrap">
         <Sidebar />
-        <div className="flex-1 p-4 w-full md:w-1/2">
-          <div className="relative max-w-md w-full">{children}</div>
-        </div>
+        <div className="flex-1 p-4 w-full md:w-1/2">{children}</div>
       </div>
     </div>
   );

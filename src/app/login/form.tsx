@@ -52,87 +52,112 @@ export const LoginForm = () => {
     "form-control h-11 block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
 
   return (
-    <form onSubmit={onSubmit}>
-      {error && (
-        <p className="text-center bg-red-300 py-4 mb-6 rounded">{error}</p>
-      )}
-      <div className="text-neutral-700 text-2xl font-medium font-['Poppins']">
-        Selamat Datang Admin
-      </div>
-      <div className="text-neutral-400 text-xs font-normal font-['Poppins']">
-        Silahkan masukkan email atau nomor telepon dan password
-        <br />
-        Anda untuk mulai menggunakan aplikasi
-      </div>
-      <div className="mt-10 mb-6">
-        <div className="text-neutral-500 text-xs font-normal font-['Poppins'] mb-2">
-          Email / Nomor Telpon
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-6 bg-blue-500 p-5">
+          <div className="h-100 d-flex justify-content-center align-items-center">
+            <p className="text-center">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
         </div>
-        <input
-          required
-          type="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
-          placeholder="Contoh: admin@gmai.com"
-          className={`${input_style}`}
-        />
-      </div>
-      <div className="mb-6">
-        <div className="text-neutral-500 text-xs font-normal font-['Poppins'] mb-2">
-          Password
+        <div className="col-sm-6">
+          <div className="p-5">
+            <form onSubmit={onSubmit}>
+              {error && (
+                <p className="text-center bg-red-300 py-4 mb-6 rounded">
+                  {error}
+                </p>
+              )}
+              <div className="text-neutral-700 text-2xl font-medium font-['Poppins']">
+                Selamat Datang Admin
+              </div>
+              <div className="text-neutral-400 text-xs font-normal font-['Poppins']">
+                Silahkan masukkan email atau nomor telepon dan password
+                <br />
+                Anda untuk mulai menggunakan aplikasi
+              </div>
+              <div className="mt-10 mb-6">
+                <label className="text-neutral-500 text-xs font-normal mb-2">
+                  Email / Nomor Telpon
+                </label>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  placeholder="Contoh: admin@gmail.com"
+                  // className={`${input_style}`}
+                  className="form-control"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="text-neutral-500 text-xs font-normal mb-2">
+                  Password
+                </label>
+                <input
+                  required
+                  type="password"
+                  name="password"
+                  value={formValues.password}
+                  onChange={handleChange}
+                  placeholder="Masukkan Password"
+                  // className={`${input_style}`}
+                  className="form-control"
+                />
+              </div>
+              <button
+                type="submit"
+                style={{ backgroundColor: `${loading ? "#ccc" : "#55acee"}` }}
+                // className="inline-block px-7 py-4 bg-blue-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                className="btn bt-lg text-white btn-block"
+                disabled={loading}
+              >
+                {loading ? "loading..." : "MASUK"}
+              </button>
+
+              <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
+                <p className="text-center font-semibold mx-4 mb-0">Atau</p>
+              </div>
+
+              <a
+                className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
+                style={{ backgroundColor: "#3b5998" }}
+                onClick={() => signIn("google", { callbackUrl })}
+                role="button"
+              >
+                <img
+                  className="pr-2"
+                  src="/images/google.svg"
+                  alt=""
+                  style={{ height: "2rem" }}
+                />
+                Google
+              </a>
+              <a
+                className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
+                style={{ backgroundColor: "#3446eb" }}
+                onClick={() => signIn("github", { callbackUrl })}
+                role="button"
+              >
+                <img
+                  className="pr-2"
+                  src="/images/github.svg"
+                  alt=""
+                  style={{ height: "2.2rem" }}
+                />
+                GitHub
+              </a>
+            </form>
+          </div>
         </div>
-        <input
-          required
-          type="password"
-          name="password"
-          value={formValues.password}
-          onChange={handleChange}
-          placeholder="Masukkan Password"
-          className={`${input_style}`}
-        />
       </div>
-      <button
-        type="submit"
-        style={{ backgroundColor: `${loading ? "#ccc" : "#55acee"}` }}
-        className="inline-block px-7 py-4 bg-blue-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-        disabled={loading}
-      >
-        {loading ? "loading..." : "Masuk"}
-      </button>
-
-      <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-        <p className="text-center font-semibold mx-4 mb-0">Atau</p>
-      </div>
-
-      <a
-        className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-        style={{ backgroundColor: "#3b5998" }}
-        onClick={() => signIn("google", { callbackUrl })}
-        role="button"
-      >
-        <img
-          className="pr-2"
-          src="/images/google.svg"
-          alt=""
-          style={{ height: "2rem" }}
-        />
-        Google
-      </a>
-      <a
-        className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
-        style={{ backgroundColor: "#3446eb" }}
-        onClick={() => signIn("github", { callbackUrl })}
-        role="button"
-      >
-        <img
-          className="pr-2"
-          src="/images/github.svg"
-          alt=""
-          style={{ height: "2.2rem" }}
-        />
-        GitHub
-      </a>
-    </form>
+    </div>
   );
 };

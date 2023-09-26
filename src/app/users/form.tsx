@@ -30,52 +30,43 @@ export default async function UserForm() {
   const users: UserType[] = await getUsers();
 
   return (
-    <div className="flex flex-col">
-      <div className="grid grid-flow-col mb-10">
-        <h5 className="font-medium">Manajemen User</h5>
-        <AddUser />
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <h5>Manajemen User</h5>
+        </div>
+        <div className="col">
+          <div className="float-right">
+            <AddUser />
+          </div>
+        </div>
       </div>
-      <table className="min-w-full text-left text-sm font-light">
-        <thead className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
-          <tr>
-            <th scope="col" className="px-12 py-4">
-              No
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Nama Lengkap
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Email
-            </th>
-            <th scope="col" className="px-12 py-4">
-              No. Telepon
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Status
-            </th>
-            <th scope="col" className="px-12 py-4">
-              #
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr
-              key={user.id}
-              className="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700"
-            >
-              <td className="whitespace-nowrap px-12 py-4 font-medium">
-                {index + 1}
-              </td>
-              <td className="whitespace-nowrap px-12 py-4">{user.name}</td>
-              <td className="whitespace-nowrap px-12 py-4">{user.email}</td>
-              <td className="whitespace-nowrap px-12 py-4">{user.phone}</td>
-              <td className="whitespace-nowrap px-12 py-4">{user.status}</td>
-              <td className="whitespace-nowrap px-12 py-4"></td>
+      <div className="row pt-5">
+        <table className="table table-striped table-hover table-md">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Nama Lengkap</th>
+              <th scope="col">Email</th>
+              <th scope="col">No. Telepon</th>
+              <th scope="col">Status</th>
+              <th scope="col">#</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user.id}>
+                <th scope="row">{index + 1}</th>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>{user.status}</td>
+                <td></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
