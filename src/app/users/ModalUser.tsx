@@ -10,9 +10,9 @@ interface propsType {
   type: string;
 }
 
-export default function AddUser(props: propsType) {
+export default function ModalUser(props: propsType) {
   const data = props?.data;
-  console.log({ data })
+  console.log({ data });
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -22,6 +22,7 @@ export default function AddUser(props: propsType) {
     email: data?.email || "",
     password: data?.password || "password123",
     roleId: data?.roleId || 2,
+    status: data?.status || null,
   });
   const [error, setError] = useState("");
 
@@ -100,9 +101,9 @@ export default function AddUser(props: propsType) {
           <Modal.Title>
             <h5>
               {props.type == "get"
-                ? "Detail"
+                ? "Data"
                 : props.type == "put"
-                ? "Edit"
+                ? "Ubah Data"
                 : "Tambah"}{" "}
               User
             </h5>
@@ -161,24 +162,43 @@ export default function AddUser(props: propsType) {
                 disabled={["get"].includes(props.type)}
               />
             </div>
+            {["get"].includes(props.type) && (
+              <>
+                <div className="mb-6">
+                  <label className="text-sm mb-2">Role</label>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    value={formValues.roleId ? "Admin" : "User"}
+                    className="form-control"
+                    disabled={true}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label className="text-sm mb-2">Status</label>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    value={formValues.status ? "Aktif" : "Tidak Aktif"}
+                    className="form-control"
+                    disabled={true}
+                  />
+                </div>
+              </>
+            )}
+
             <div className="pb-3">
               {props.type !== "get" && (
                 <button
                   type="submit"
                   className={`btn btn-block text-white ${
-                    loading
-                      ? "btn-secondary"
-                      : props.type === "put"
-                      ? "btn-warning"
-                      : "btn-primary"
+                    loading ? "btn-secondary" : "btn-primary"
                   }`}
                   disabled={loading}
                 >
-                  {loading
-                    ? "loading..."
-                    : props.type === "put"
-                    ? "UBAH"
-                    : "SIMPAN"}
+                  {loading ? "loading..." : "SIMPAN"}
                 </button>
               )}
             </div>

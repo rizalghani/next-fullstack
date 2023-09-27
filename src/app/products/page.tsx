@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import Header from "@/components/header.component";
 
 import AdminLayout from "@/components/admin/adminLayout.component";
-import ProductForm from "./form";
+import UserForm from "./form";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -11,10 +11,10 @@ export default async function Dashboard() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {user && (
         <AdminLayout>
-          <ProductForm />
+          <UserForm />
         </AdminLayout>
       )}
     </>

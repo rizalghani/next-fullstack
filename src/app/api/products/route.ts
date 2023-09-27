@@ -1,15 +1,14 @@
 import { prisma } from "@/lib/prisma";
-import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    const users = await prisma.user.findMany();
-    
+    const products = await prisma.product.findMany();
+
     return NextResponse.json({
       status: true,
       message: "ok",
-      data: users,
+      data: products,
     });
   } catch (error: any) {
     return new NextResponse(
@@ -24,40 +23,27 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const { id, name, email, password, phone, roleId, status } =
-      (await req.json()) as {
-        id?: string;
-        name: string;
-        email: string;
-        password: string;
-        phone: string;
-        roleId: number;
-        status?: boolean;
-      };
+    const { id, name, group } = (await req.json()) as {
+      id?: number;
+      name: string;
+      group: string;
+    };
 
-    let user = null;
-    const hashed_password = await hash(password, 12);
+    let product = null;
 
     if (id) {
-      user = await prisma.user.update({
+      product = await prisma.product.update({
         where: { id },
         data: {
           name,
-          email: email.toLowerCase(),
-          password: hashed_password,
-          phone,
-          roleId,
-          status,
+          group,
         },
       });
     } else {
-      user = await prisma.user.create({
+      product = await prisma.product.create({
         data: {
           name,
-          email: email.toLowerCase(),
-          password: hashed_password,
-          phone,
-          roleId,
+          group,
         },
       });
     }
@@ -66,8 +52,8 @@ export async function POST(req: Request) {
       status: true,
       message: "ok",
       data: {
-        name: user.name,
-        email: user.email,
+        name: product.name,
+        group: product.group,
       },
     });
   } catch (error: any) {
